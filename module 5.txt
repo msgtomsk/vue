@@ -1,0 +1,50 @@
+Vue instance
+
+	-> can have multiple instance
+	-> can interact with multiple instances.
+	
+	-> vue js proxies the properties
+
+	-> we can access the properties outside the vue instance.
+
+	-> we can create an object outside and can pass into the vue instance.
+
+
+ref 
+
+	-> ref is a kind of key recognized by vue. (This is not a html)
+	-> It can place on any element.
+
+	-> This ref has access inside and outside of the vue instance.
+
+
+ -> properties starting with $ sign is a native vue js methods
+ -> $mount();
+
+
+Vue.component();
+
+	-> used to create a new component for reusing.
+
+
+Limitations of templates
+
+
+
+
+Vue js instance lifecycle
+
+	new Vue() --> beforeCreate() -> initialize data and events -> instance created  --> created() -> compile template
+
+	--> beforeMount() -> replace element with compiled template -> mounted to the DOM
+
+
+	if data changes
+
+	data changed --> beforeUpdate() -> Rerender DOM --> updated() --> mounted to the DOM
+
+	beforeDestroy() -> destroyed --> destroyed()
+
+
+
+single file template.

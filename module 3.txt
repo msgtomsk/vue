@@ -1,0 +1,10 @@
+Directives
+
+	v-if -> removed from DOM
+	v-else
+	v-show -> to hide the element
+	v-for
+
+
+alternate to v-if (<template> -> to group elements)
+

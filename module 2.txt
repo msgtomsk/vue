@@ -1,0 +1,44 @@
+Vue
+
+	-> Vue js does not render HTML elements, it renders only the text.
+	-> This is a default behaviour, It is not affected by cross scripting
+
+vue({});
+
+	properties
+		-> el -> connect to DOM
+		-> data -> store data to use
+		-> methods
+		-> computed -> dependent properties
+		-> watch -> execute code upon data changes
+
+Directives
+	-> Is basically an instruction given in a code.
+	-> pass arguments to directives using colon.
+
+	1. v-on (listen to something  eg. v-on:click = "fun")
+	2. v-bind  (To tell not act as default html attribute.  eg. v-bind:href = "link") 
+	3. v-once ---> will execute only once. It will not update later.
+	4. v-html ---> output HTML code. (use carefully)
+	5. v-model ---> Two way data binding
+
+
+short hand for directives
+
+	v-on -> @
+	v-bind:href -> :href
+
+
+
+Apply css 
+
+	-> Add css class directly
+	-> Array of css class 
+	-> object with key value pair (key as class and value as true or false).
+	
+
+	
+
+New
+
+	-> sanitized.

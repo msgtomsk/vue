@@ -1,0 +1,20 @@
+
+	-> v-modal updates for every key strokes.
+	-> v-modal.lazy will update once you leave the input field.	
+
+text area
+	-> use v-modal to show the default text
+
+check box
+
+	-> use the same v-modal name for every check box.
+
+
+radio button
+
+	same as check box
+
+
+drop down
+
+	:selected = ""  ---> to set the selected 

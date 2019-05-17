@@ -1,0 +1,16 @@
+
+Animation
+
+	<transition>
+
+		-> simply wrap the element with <transition>
+
+		-> can animate only one element
+
+		*-enter
+
+		*-enter-active
+
+		*-leave
+
+		*-leave-active

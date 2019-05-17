@@ -1,0 +1,228 @@
+Router
+
+	-> npm install --save vue-router
+
+	-> Vue.use(VueRouter);
+
+	-> It will not change the entire page.
+
+		<router-view></router-view>
+
+
+
+Outsourcing the routes
+
+	import the component
+	export const routes = [
+		{path: '', component: 'Home'}, ---> root
+		{path: '/user', component: 'User'}
+	];
+
+
+in the main.js
+
+	register the vue-router
+
+	import the outsourced route.
+
+	const router = new VuwRouter({ routes }); --> es6 syntax.  
+		-> default mode hash
+
+		-> we can change the mode [mode: 'history']
+
+
+	new Vue({
+		el : '',
+		router
+	}); --> es6 syntax.
+
+
+
+Routing modes
+
+	# mode -> default
+
+	eg: localhost:8080/#/
+
+	if localhost:8080/  -> if we hit enter, everytime it will send the request to the server.
+
+	localhost:8080/ --> server returns the index html
+
+	for single page application
+
+		-> the url after #/ is handled by the running js
+
+
+
+Navigating with links
+
+	<router-link to="/">Home</router-link>
+	
+
+	styling --> set the active class to the link
+
+		<router-link to="/" tag = "li" active-class = "active"  exact><a>Home</a></router-link>
+		<router-link to="/user" tag = "li" active-class = "active"><a>User</a></router-link>
+
+	  -> The active class is applied based on the url i.e: /user
+
+
+Navigate from code
+
+	<button @click = "goToHome">Go</button>
+
+	<script>
+		export default {
+			methods: {
+				goToHome() {
+					this.$router.push('/');
+				}
+			}
+		}
+	</script>
+
+
+Setting up route parameters
+
+	Add dynamic routes
+
+		export const routes = [
+			{path: '', component: 'Home'}, ---> root
+			{path: '/user/:id', component: 'User'}
+		];
+
+
+	-> Access data from the url
+
+		-> In the data method
+
+			id: this.$route.params.id
+
+	if you are in the same component, if you reload, Vue will not create new one, it will not update the component.
+
+
+		we can use watch for content changes
+
+		watch: {
+			'$route'(to, from) {
+				this.id = to.params.id; 
+			}
+		}
+
+
+
+
+
+setting child routes:
+
+	export const routes = [
+		{path: '', component: 'Home'}, ---> root
+		{path: '/user', component: 'User', children: [
+			path: ':id', component: detail
+			path: ':id/edit', component: edit,
+		]}
+	];
+
+	we have to set the <router-view></router-view> to the parent.
+
+
+	we can also set name to the route and can use the route in the to attribute in the router link.
+
+
+
+check before each navigation
+
+	we can check in three different place
+	In all the three places we are not having access to component we are passing.
+
+
+	next() is compulsory to pass the route.
+
+	1. main
+
+		router.beforeEach((to, from, next) => {
+			next();  ---> to continue the route.
+			next(false) --> abort route
+		})
+
+		-> This is like global, will check for all routes.
+
+	2. In the component
+
+		beforeRouteEnter((to, from, next) => {	 --> like lifecycle method.
+			if() { 				 ----> check here user is authenticated.
+				next()
+			}
+		});
+
+		-> here in we can access the data properties
+			next((viewmodel) => {
+				viewmodel.propertyname;
+			})
+
+
+	3. Where router is specified eg. router.js
+
+		-> In the object check 
+
+			beforeEach((to, from, next) => {
+				next();
+			})
+
+			-> This is related to specific component. 
+
+
+
+Check before route leave
+
+	-> In the component object
+
+	   export default {
+
+		data() {
+			return {
+				confirmed: false;
+			}
+		}
+
+		beforeRouteLeave((to, from, next) => {
+			if(this.confirmed) {              ----> here we can access confirmed because it already created.
+				next();
+			} else {
+				if(confirm("Are you sure")) {
+					next();
+				} else {
+					next(false);
+				}
+			}
+
+		})
+	  }
+
+
+
+Loading routes lazily
+
+	The const User should be the same name as specified in the router component.
+
+
+	const User = resolve => {
+		require.ensure(['./components/user/User.vue'], () => {
+			resolve(require(./components/user/User.vue))
+		})
+	}
+
+	-> This will create new bundle. If we add more like this, it will create bundles accordingly.
+
+	-> we can group all the bundles by providing the name as third argument.
+
+	const User = resolve => {
+		require.ensure(['./components/user/User.vue'], () => {
+			resolve(require(./components/user/User.vue))
+		}, user );
+	}
+
+
+
+	
+		

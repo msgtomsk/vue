@@ -1,0 +1,22 @@
+
+Filter
+	-> filter helps to transform output in the template
+
+	-> Vue doesn't provide filters. we should create our own filter.
+
+
+	-> can register locally or globally
+
+		-> Vue.filter();
+
+	-> each filter is a function will get a value.
+
+		filter: {
+			toUppercase(value) {
+				return value.UpperCase();
+			}
+		}
+
+		<p> {{ text | toUppercase }} </p>
+
+	

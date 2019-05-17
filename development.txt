@@ -1,0 +1,19 @@
+Vue CLI
+
+	-> It allows us to fetch vueJs Template projects.
+	-> fetch build project setup
+
+
+install vue CLI
+
+	-> npm install -g vue-cli
+
+	-> choose from different Templates
+
+		-> simple
+		-> webpack-simple
+		-> webpack
+		-> browserify/browserify-simple
+
+
+	-> vue init webpack-simple(Template name) proj-name

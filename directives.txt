@@ -1,0 +1,58 @@
+
+Built in directive
+
+	-> v-text	
+	-> v-html
+
+custom directive
+
+	globally
+
+		-> important for configuring the directive is 5 hooks.
+
+			-> bind(el, binding, vnode)   --> don't change binding and vnode
+
+			-> inserted(el, binding, vnode)  --> inserted in parent node.
+
+			-> update(el, binding, vnode, oldVnode)  --> once component is updated(without children)
+
+			-> componentUpdated(el, binding, vnode, oldVnode)  --> once component is updated(with children)
+
+			-> unbind(el, binding, vnode)  --> once directive is removed.
+
+		-> Vue.directive('highlight', {
+			bind() {
+				el.style.backgroundColor = "red";
+			}
+		   });
+
+		  <p v-hightlight></p>
+
+
+		-> passing values to custom directive
+
+			-> Vue.directive('highlight', {
+				bind() {
+					el.style.backgroundColor = binding.value;
+				}
+		   	   });
+	
+			  <p v-hightlight= "green"></p>
+
+			-> Vue.directive('highlight', {
+				bind() {
+					if(binding.arg == 'background') {
+						el.style.backgroundColor = binding.value;
+					} else {
+						el.style.color = binding.value;	
+					}
+				}
+		   	   });
+	
+			  <p v-hightlight:background= "green"></p>
+
+
+
+Add modifier
+
+	upto 161 (12th folder)

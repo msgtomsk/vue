@@ -1,0 +1,58 @@
+
+	-> vue-resource
+
+	-> Vue.use(); --> tells to add a plugin
+
+
+	-> this.$http.post(url /data.json, this.user )
+		.then(response=> {}, err = {});
+
+
+set url as global
+
+	-> Vue.http.options.root = url;
+
+
+intercepting requests
+
+	Vue.http.interceptors.push((request, next) => {
+		if(request.method == 'POST') {
+			request.method = 'PUT';
+		}
+		next();
+	});
+
+
+Intercepting response
+
+	Vue.http.interceptors.push((request, next) => {
+		if(request.method == 'POST') {
+			request.method = 'PUT';
+		}
+		next(response => {
+			response.jsoan = () => { message: reponse.body}
+		});
+	});
+
+
+create custom resource
+
+	-> can use multiple places
+	-> high flexibility
+
+	created() {	
+		const customActions = {
+			saveAlt: {method: 'POST', url: 'alternate.json'}
+		}
+		this.resource = this.$resource('data.json',{}, customActions);
+	}
+
+
+	use like this
+
+		-> this.resource.saveAlt(this.user);
+
+
+
+
+

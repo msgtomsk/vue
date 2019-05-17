@@ -1,0 +1,81 @@
+component
+
+	-> In component data property should be a function.
+
+Vue.component("my-comp", {
+	data: function() {
+		return {
+			status: 'small'
+		}
+	},
+
+	template: '<p>{{status}}</p>'
+});
+
+
+we cant directly use data inside the component, so we create it as a function.
+
+
+
+Registering components locally and globally
+
+
+
+
+
+	-> template should have only one root element
+
+
+  If we want to change the parent component value from the child component, we should emit event ($emit('', property changed))
+
+  we need to listen the emitted property in the parent.
+
+
+Communication
+
+	-> we cannot communicate between child to child
+	-> possibility is child to parent or parent to child.
+
+	Two ways
+
+		-> custom event
+		-> callback
+
+	Event Bus
+
+		-> communication between child to child.
+		-> create new Vue instance as a central store.
+
+
+
+slots
+
+	-> content from outside is displayed.
+
+	<slot></slot>
+	<slot>Default value</slot>  --> if nothing is passed, default value will be dislayed.
+
+
+Dynamic component
+
+	-> choosing the component dynamically
+
+
+	<component :is= "selectedComponent"></component>   --> allows us to dynamically add components.
+
+
+	-> By this way the component gets destroyed every time when changing.
+
+	-> we can overwrite the default property
+
+		<keep-alive>
+			<component :is= "selectedComponent"></component>
+		</keep-alive>
+
+
+	Dynamic content lifecycle hooks
+		
+	  -> if we use keep-alive, destroyed lifecycle will not get executed so, 
+
+		-> activated
+		-> deactivated
